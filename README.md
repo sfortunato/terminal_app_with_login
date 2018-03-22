@@ -12,3 +12,5 @@ To get started, make sure you have:
 will also
 - import os
 - from collections import OrderedDict
+
+can run app via ./run_app.py
