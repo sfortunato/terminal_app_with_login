@@ -81,7 +81,7 @@ def do_a_thing(user):
 	return user
 
 def nested_menu_example(user):
- 	"""check portals for updated data, calls via user_access"""
+ 	"""Note: not on logged_in_menu. An example of how to nest additional menus off of the main logged in menu. To do so, add to logged_in_menu ordered dict. this docstring will display as the selection text."""
  	print "Select some information to add: "
 	for key, value in nested_logged_in_menu.items():
 		print "'" + key + "' " + value
@@ -102,9 +102,8 @@ logged_in_menu = OrderedDict([
 	("o", log_out),
 	("a", add_some_data),
 	("b", do_a_thing), 
-	("c", nested_menu_example),
-	("p", print_user_data),
-	("c", clear_screen)
+	("c", clear_screen),
+	("p", print_user_data)
 	])
 
 
