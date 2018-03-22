@@ -51,8 +51,7 @@ class User:
 	def addInput(self, **kwargs):
 		for key, value in kwargs.items():
 			setattr(self, key, value)
-		persistToFile(self)
-		return user
+		self.persistToFile()
 		# note: inputs added do not print as part of user.printAll() or user_access.printAll(user)
 
 

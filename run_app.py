@@ -57,18 +57,28 @@ def log_out(user):
 	return user
 
 def add_some_data(user):
-	"""add some new patient information"""
+	"""add some new user information"""
 	
-	input_one = raw_input("input 1: ")
-	input_two = raw_input("input 2: ")
-	kwargs[input_one] = input_two
+	first_name = raw_input("first name: ")
+	middle_name = raw_input("middle name: ")
+	last_name = raw_input("last name: ")
+	date_of_birth = raw_input("date of birth: ")
 
-	user_access.addInput(user, kwargs)
+	updates = {
+		"first_name": first_name,
+		"middle_name": middle_name,
+		"last_name": last_name,
+		"dob": date_of_birth
+	}
+
+	user = user_access.addInput(user, **updates)
+
 	return user
 
 def do_a_thing(user):
-	"""print out your med list"""
-	pass
+	"""some function"""
+	print "this function is not yet initiatied"
+	return user
 
 def nested_menu_example(user):
  	"""check portals for updated data, calls via user_access"""
@@ -79,18 +89,11 @@ def nested_menu_example(user):
 	choice = raw_input(" > ").lower().strip()
 	if choice in nested_logged_in_menu:
 		returned_object = nested_logged_in_menu[choice]
-		print nested_logged_in_menu[choice]
+		print "You selected " + returned_object + " this menu does not do anything (yet)"
 
-	nested_input_one = raw_input("input 1: ")
-	nested_input_two = raw_input("input 2: ")
+	return user
 
-	"""!!update this thing!!"""
-	new_portal = PortalLogin(portal_username, portal_password)
-	new_portal.organization = portal_organization
-	user.portal_list.addPortal(new_portal)
-	user.persistToFile()
-
-def print_all_user_data(user):
+def print_user_data(user):
  	"""print out all user data"""
  	user_access.printAll(user)
 
@@ -100,7 +103,7 @@ logged_in_menu = OrderedDict([
 	("a", add_some_data),
 	("b", do_a_thing), 
 	("c", nested_menu_example),
-	("p", print_all_user_data),
+	("p", print_user_data),
 	("c", clear_screen)
 	])
 
@@ -110,7 +113,7 @@ def log_in_menu_loop():
 	"""Show the log in menu and handle user log in, user creation, and quitting"""
 	choice = None
 	while choice != 'q':
-		# clear_screen()
+		clear_screen()
 		print "'q' to quit"
 		for key, value in log_in_menu.items():
 			print "'" + key + "' " + value.__doc__
@@ -130,7 +133,6 @@ def logged_in_menu_loop(user):
 	choice = None
 
 	while choice != 'o':
-		# clear_screen()
 		for key, value in logged_in_menu.items():
 			print "'" + key + "' " + value.__doc__
 		choice = raw_input(" > ").lower().strip()
