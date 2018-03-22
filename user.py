@@ -26,6 +26,10 @@ class User:
 		print "DOB:         ", self.dob
 		print ""
 
+	def addInput(self, **kwargs):
+		#unpack ** kwargs
+		return user
+
 	def persistToFile(self):
 		"""soft creates / finds user's user_data folder, persists using pickle"""
 		path_to_uid_dir = "user_data/" + self.uid

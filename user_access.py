@@ -38,7 +38,7 @@ class UserAccess:
 				return None
 			if user.email == email:
 				return None
-		#if doesn't, create a user & return user object
+
 		new_uid = self.assignNewUID()
 		new_user = User(new_uid, username, email, password)
 		new_user.persistToFile()
@@ -72,6 +72,10 @@ class UserAccess:
 		"""saves user object to file via User class"""
 		user.persistToFile()
 
+
+	def addInput(self, user, **kwargs):
+		user.addInput(**kwargs)
+		return user
 
 
 

@@ -3,7 +3,6 @@ import os
 
 from collections import OrderedDict
 from user_access import UserAccess
-from portal_login import PortalLogin
 
 
 user_access = UserAccess()
@@ -46,11 +45,10 @@ log_in_menu = OrderedDict([
 
 
 # logged_in_menu functions and menu options
-
-portal_organization_menu = OrderedDict([
-	("f", "Fenway Health"),
-	("b", "BIDMC"),
-	("g", "GHC South Central Wisconsin")
+nested_logged_in_menu = OrderedDict([
+	("a", "Example 1"),
+	("b", "Example 2"),
+	("c", "Example 3")
 ])
 
 def log_out(user):
@@ -58,55 +56,61 @@ def log_out(user):
 	user = None
 	return user
 
-def add_new_portal(user):
-	"""add a new patient portal"""
+def add_some_data(user):
+	"""add some new patient information"""
+	
+	input_one = raw_input("input 1: ")
+	input_two = raw_input("input 2: ")
 
-	print "Select a patient portal to connect with: "
-	for key, value in portal_organization_menu.items():
+	kwargs[input_one] = input_two
+
+	user_access.addInput(user, kwargs)
+	user_access.persistToFile(user)
+
+	#PERSIST TO USER OBJECT AND FILE
+
+	return user
+
+def do_a_thing(user):
+	"""print out your med list"""
+	pass
+
+def nested_menu_example(user):
+ 	"""check portals for updated data, calls via user_access"""
+ 	print "Select some information to add: "
+	for key, value in nested_logged_in_menu.items():
 		print "'" + key + "' " + value
 	
 	choice = raw_input(" > ").lower().strip()
-	if choice in portal_organization_menu:
-		portal_organization = portal_organization_menu[choice]
-		print portal_organization_menu[choice]
+	if choice in nested_logged_in_menu:
+		returned_object = nested_logged_in_menu[choice]
+		print nested_logged_in_menu[choice]
 
-	portal_username = raw_input("portal username: ")
-	portal_password = raw_input("portal password: ")
+	nested_input_one = raw_input("input 1: ")
+	nested_input_two = raw_input("input 2: ")
 
+	"""!!update this thing!!"""
 	new_portal = PortalLogin(portal_username, portal_password)
 	new_portal.organization = portal_organization
 	user.portal_list.addPortal(new_portal)
 	user.persistToFile()
-	
-	print ""
-	print "Portal added successfully!"
-
-	return None
-
-def print_med_list(user):
-	"""print out your med list"""
-	user_access.printMedList(user)
-
-def crawl_portals(user):
- 	"""check portals for updated data, calls via user_access"""
- 	user_access.crawl(user)
 
 def print_all_user_data(user):
  	"""print out all user data"""
  	user_access.printAll(user)
 
+
 logged_in_menu = OrderedDict([
 	("o", log_out),
-	("a", add_new_portal),
-	("m", print_med_list), 
-	("u", crawl_portals),
+	("a", add_some_data),
+	("b", do_a_thing), 
+	("c", nested_menu_example),
 	("p", print_all_user_data),
 	("c", clear_screen)
 	])
 
 
-# menu loops
-
+# app / menu loops
 def log_in_menu_loop():
 	"""Show the log in menu and handle user log in, user creation, and quitting"""
 	choice = None
