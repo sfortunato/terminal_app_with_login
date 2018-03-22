@@ -72,7 +72,7 @@ class UserAccess:
 
 
 	def addInput(self, user, **kwargs):
-		user.addInput(**kwargs)
+		user = user.addInput(**kwargs)
 		return user
 
 

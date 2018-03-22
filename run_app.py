@@ -61,14 +61,9 @@ def add_some_data(user):
 	
 	input_one = raw_input("input 1: ")
 	input_two = raw_input("input 2: ")
-
 	kwargs[input_one] = input_two
 
 	user_access.addInput(user, kwargs)
-	user_access.persistToFile(user)
-
-	#PERSIST TO USER OBJECT AND FILE
-
 	return user
 
 def do_a_thing(user):
