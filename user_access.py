@@ -16,9 +16,7 @@ class UserAccess:
 		if len(uids_exist) == 0:
 			return "000000001"
 		uids_exist = [o.split("user_data/")[1] for o in uids_exist]
-		print uids_exist
 		uids_exist = sorted(uids_exist)
-		print uids_exist
 		highest_known_uid = uids_exist[-1]
 		new_uid = int(highest_known_uid) + 1
 		new_uid = str(new_uid).zfill(9) #turns into string, fills in leading zeros
