@@ -13,5 +13,6 @@ will also
 - import os
 - from collections import OrderedDict
 
-can run app via ./run_app.py
-when you create first user, a /user_data/ folder is created in the repo, with a folder for each user id (uid) and a user_data.file that contains the user object. Accessing / writing to user object is demoed in this repo via Pickle.
+Run the app via ./run_app.py
+
+On creation of the first user, a /user_data/ folder is created in the repo, with a folder for each user id (uid) and a user_data.file that contains the user object. Saving and retrieving the data from disk is done via pickle in user.py (and accessible via a UserAccess method).
